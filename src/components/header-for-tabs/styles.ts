@@ -1,9 +1,11 @@
 import { Dimensions, StyleSheet } from 'react-native';
+import colors from '../../config/colors';
 
 export const styles = StyleSheet.create({
     header: {
-        marginTop: 30,
-        padding: 15,
+        backgroundColor: 'white',
+        height: 60,
+        top: 20,
         shadowColor: '#000',
         shadowOffset: {
             width: 2,
@@ -12,15 +14,18 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.10,
         elevation: 5,
         shadowRadius: 6,
+        position: 'absolute',
         width: Dimensions.get('screen').width,
-        backgroundColor: '#fff'
+        left: 0,
+        justifyContent: 'center',
+        alignContent: 'center',
     },
 
-    titlePage: {
+    title: {
         fontSize: 20,
-        fontWeight: 700,
-        color: '#030209',
+        color: colors.azulEscuro,
+        fontWeight: 500,
+        padding: 10,
         textAlign: 'center'
-    },
-
+    }
 });

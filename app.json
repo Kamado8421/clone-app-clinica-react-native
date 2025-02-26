@@ -6,6 +6,10 @@
     "orientation": "portrait",
     "icon": "./assets/splash-icon.png",
     "userInterfaceStyle": "light",
+    "plugins": [
+      "@prisma/react-native",
+      "expo-sqlite"
+    ],
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
@@ -19,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.worka_manager8421luh.clinicclone"
     },
     "web": {
       "favicon": "./assets/favicon.png"

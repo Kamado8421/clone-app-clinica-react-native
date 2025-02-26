@@ -17,11 +17,12 @@ const DisplayButtons: PropsTypeDisplayButton[] = [
 
 export default function Home() {
 
+
   const navigation = useNavigation<any>();
   const [statePopUp, setStatePopUp] = useState(true);
   const [city, setCity] = useState('...');
 
-  const handleCity = (ct: string) => {
+  const handleCity = async (ct: string) => {
     switch (ct.toUpperCase()) {
       case 'MA':
         setCity('Maranhão')

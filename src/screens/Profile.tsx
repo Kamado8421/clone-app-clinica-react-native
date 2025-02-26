@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import colors from '../config/colors';
 import LoginRequired from './LoginRequired';
 import { USER_ON } from '../../App';
@@ -26,9 +26,10 @@ export default function Profile() {
       textMarketing='Cadastre-se grátis e tenha acesso ao melhor da medicina digital'
     />
   )
+  
   return (
     <View style={styles.container}>
-      <HeaderLogo />
+      <HeaderLogo/>
       <View style={{flexDirection: 'row', gap: 10, alignItems: 'center', padding: 15, borderBottomWidth: 1, borderBottomColor: '#2d2d2d'}}>
           <Feather name='user' size={23}/>
           <View style={{flexDirection: 'column', alignItems: 'flex-start'}}>

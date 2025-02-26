@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native';
+import colors from '../../config/colors';
 
 export const styles = StyleSheet.create({
     header: {
@@ -26,4 +27,16 @@ export const styles = StyleSheet.create({
         flex: 2,
         marginTop: 20
     },
+
+    iconBack: {
+        width: 35,
+        height: 35,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 6,
+        backgroundColor: colors.azulEscuro,
+        top: 41,
+        position: 'absolute',
+        right: 20
+    }
 });

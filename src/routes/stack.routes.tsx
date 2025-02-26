@@ -5,6 +5,7 @@ import CheckUp from '../screens/showcases-screens/CheckUp';
 import Cirurgias from '../screens/showcases-screens/Cirurgias';
 import ShowPrices from '../screens/showcases-screens/ShowPrices';
 import Helps from '../screens/Helps';
+import BeaforeShowPrices from '../screens/showcases-screens/beafore-screens/BeaforeShowPrices';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +32,10 @@ export default function StackRoutes(){
                 name='CirurgiasScreen'
             />
             
+            <Stack.Screen 
+                component={BeaforeShowPrices}
+                name='BeaforeShowPricesScreen'
+            />
             <Stack.Screen 
                 component={ShowPrices}
                 name='ShowPricesScreen'

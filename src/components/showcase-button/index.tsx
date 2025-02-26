@@ -35,7 +35,7 @@ export default function ShowcaseButton(props: PropsTypeDisplayButton) {
                 navigation.navigate('Stack', { screen: 'CirurgiasScreen' });
                 break;
             case 'dolar':
-                navigation.navigate('Stack', { screen: 'ShowPricesScreen' });
+                navigation.navigate('Stack', { screen: 'BeaforeShowPricesScreen' });
                 break;
             default:
                 console.log('Screen not exists')

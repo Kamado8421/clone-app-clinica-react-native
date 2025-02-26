@@ -10,7 +10,7 @@ export interface ProfileLinkProps {
 }
 export default function ProfileLink(props: ProfileLinkProps){
 
-    const navigation = useNavigation<any>()();
+    const navigation = useNavigation<any>();
 
     const onClick = () => {
        if(props.screenName){

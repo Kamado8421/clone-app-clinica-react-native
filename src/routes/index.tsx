@@ -7,7 +7,7 @@ import StackRoutes from "./stack.routes";
 const Stack = createNativeStackNavigator();
 
 export default function Routes(){
-
+    
     return (
        <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
