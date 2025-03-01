@@ -5,9 +5,25 @@ import { USER_ON } from '../../App';
 import HeaderForTabs from '../components/header-for-tabs';
 import { Feather } from '@expo/vector-icons';
 import SimpleHeaderTitle from '../components/simple-header-title';
+import { useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Credits() {
-  if (!USER_ON) return (
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const storedUser = await AsyncStorage.getItem("user");
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+      }
+    };
+
+    checkUser();
+  }, []);
+
+  if (!user) return (
     <LoginRequired
       titlePage='Seus Créditos Clínica Clone'
       vectorName='money_card'

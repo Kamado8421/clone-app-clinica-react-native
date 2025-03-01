@@ -2,11 +2,27 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import colors from '../config/colors';
 import { USER_ON } from '../../App';
 import LoginRequired from './LoginRequired';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SimpleHeaderTitle from '../components/simple-header-title';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Agenda() {
-  if (!USER_ON) return (
+
+  const [user, setUser] = useState(null);
+  const [screen, setScreen] = useState('PENDENTES');
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const storedUser = await AsyncStorage.getItem("user");
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+      }
+    };
+
+    checkUser();
+  }, []);
+
+  if (!user) return (
     <LoginRequired
       titlePage='Minha Agenda'
       vectorName='calendar_card'
@@ -14,8 +30,7 @@ export default function Agenda() {
     />
   )
 
-  const [screen, setScreen] = useState('PENDENTES');
-
+  
   const changeScreen = (screen: 'PENDENTES' | 'ANTERIORES') => {
     setScreen(screen);
   }

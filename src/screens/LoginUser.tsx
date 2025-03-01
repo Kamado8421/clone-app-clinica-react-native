@@ -8,6 +8,7 @@ export default function LoginUser() {
     const [dataLogin, setDataLogin] = useState({});
 
     const navigation = useNavigation();
+    
 
     return (
         <View style={styles.container}>

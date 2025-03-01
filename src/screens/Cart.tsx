@@ -4,15 +4,32 @@ import { USER_ON } from '../../App';
 import LoginRequired from './LoginRequired';
 import SimpleHeaderTitle from '../components/simple-header-title';
 import { Feather } from '@expo/vector-icons';
+import { useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Cart() {
-  if (!USER_ON) return (
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const storedUser = await AsyncStorage.getItem("user");
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+      }
+    };
+
+    checkUser();
+  }, []);
+
+  if (!user) return (
     <LoginRequired
       titlePage='Meu Carrinho'
       vectorName='working_card'
       textMarketing='Crie ou acesse sua conta para vizualizar seus pedidos'
     />
   )
+  
   return (
     <View style={styles.container}>
       <SimpleHeaderTitle title='Meu Carrinho' />
