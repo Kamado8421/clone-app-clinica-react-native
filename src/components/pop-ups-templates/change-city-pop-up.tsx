@@ -4,6 +4,7 @@ import PopUp from '../pop-up';
 import { Feather } from '@expo/vector-icons';
 import colors from '../../config/colors';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface PropsType {
   setStatePopUp: Function;
@@ -14,15 +15,24 @@ export default function ChangeCytyPopUpTemplate(props: PropsType) {
 
 
   const handleCity = async (ct: string) => {
+
+    let valueCity = ''
+
     switch (ct.toUpperCase()) {
       case 'MA':
-        props.setCity('Maranhão')
+        valueCity = 'Maranhão'
+        props.setCity(valueCity)
         break;
       case 'PI':
-        props.setCity('Piauí')
+        valueCity = 'Piauí'
+        props.setCity(valueCity)
         break;
     }
 
+    if(valueCity){
+      AsyncStorage.setItem('clinic_city', valueCity)
+      console.log('Valor de cidade: ', valueCity)
+    }
     props.setStatePopUp(false);
   }
   return (

@@ -3,7 +3,7 @@ import NextPage from '../../../components/showcase-next-page';
 import colors from '../../../config/colors';
 import { useNavigation } from '@react-navigation/native';
 
-export default function BeaforeShowPrices() {
+export default function BeaforeOdonto() {
 
     const navigation = useNavigation<any>();
 
@@ -12,8 +12,9 @@ export default function BeaforeShowPrices() {
     }
 
     const buttons = [
-        { icon: 'zap', title: 'Exame e Procedimentos', bgColor: colors.vermelhoBase, action: () => actionButtons('ShowPricesScreen') },
-        { icon: 'shopping-bag', title: 'Cirurgias', bgColor: colors.azulClaro, action: () => actionButtons('CirurgiasScreen') },
+        { icon: 'zap', title: 'Consultas', bgColor: colors.azulEscuro, action: () => actionButtons('BeaforeOdontoConsultasScreen') },
+        { icon: 'shopping-bag', title: 'Exames', bgColor: colors.vermelhoBase, action: () => actionButtons('ExamesOdontoScreen') },
+        { icon: 'shopping-bag', title: 'procedimentos', bgColor: colors.verde, action: () => actionButtons('ProcedimentoOdontoScreen') },
     ]
 
     return (
@@ -21,8 +22,7 @@ export default function BeaforeShowPrices() {
             <NextPage
                 image='im'
                 header='HeaderTitle'
-                titleHeader='Ver Preços'
-                title='O que você procura?'
+                title='Qual serviço você procura?'
                 buttons={buttons}
             />
         </View>

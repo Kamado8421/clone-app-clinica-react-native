@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
         width: '70%',
         paddingHorizontal: 30,
         height: 65,
-        marginBottom: 20,
+        marginBottom: 10,
         borderRadius: 8,
         flexDirection: 'row',
         alignItems: 'center',

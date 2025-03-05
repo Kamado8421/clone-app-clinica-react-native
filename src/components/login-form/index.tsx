@@ -33,7 +33,7 @@ export default function LoginForm(props: PropsType) {
         console.log('meu data aqui: ', data)
 
         try {
-            await axios.post("http://192.168.1.3:3333/login", {
+            await axios.post("http://192.168.199.15:3333/login", {
                 email: data.email,
                 password: data.password
             }, { timeout: 5000 })
@@ -49,9 +49,7 @@ export default function LoginForm(props: PropsType) {
                 })
                 .catch(err => {
                     console.log('Meu erro aqui: ',err);
-                    if(err === ' [AxiosError: Request failed with status code 401]' ){
-                        Alert.alert('Usuário Incálido', 'Verifique suas credenciais')
-                    }
+                    Alert.alert('Erro de Servidor', 'Desculpe, mas não conseguimos concluir esta ação devido problemas internos no servidor.\n\nTente novamente mais tarde.')
                 })
 
 

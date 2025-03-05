@@ -4,7 +4,7 @@ import LoginRequired from './LoginRequired';
 import { Feather } from '@expo/vector-icons';
 import SimpleHeaderTitle from '../components/simple-header-title';
 import { useEffect, useState } from 'react';
-import { checkUser } from '../services';
+import { AlertExternalLinking, checkUser } from '../services';
 import Loading from '../components/pre-loading';
 import { TIME_LOADING_DEFAULT } from '../config/infos';
 
@@ -38,13 +38,13 @@ export default function Credits() {
           <Text style={{ fontSize: 40, fontWeight: 800, color: colors.azulEscuro }}>R$ 0</Text>
         </View>
         <View style={styles.row02}>
-          <TouchableOpacity style={styles.iconBox}>
+          <TouchableOpacity style={styles.iconBox} onPress={() => AlertExternalLinking()}>
             <View style={styles.icon}>
               <Feather name='plus-circle' size={25} color={'white'} />
             </View>
             <Text style={{ fontSize: 14, fontWeight: 500, color: colors.azulClaro }}>Adicionar</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.iconBox}>
+          <TouchableOpacity style={styles.iconBox} onPress={() => AlertExternalLinking()}>
             <View style={styles.icon}>
               <Feather name='paperclip' size={25} color={'white'} />
             </View>

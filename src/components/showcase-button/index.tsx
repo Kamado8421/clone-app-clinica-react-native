@@ -1,6 +1,7 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Alert } from 'react-native';
 import { styles } from './styles';
 import { useNavigation } from '@react-navigation/native';
+import { AlertExternalLinking } from '../../services';
 
 export interface PropsTypeDisplayButton {
     iconName: "consultas" | 'procedimento' | 'resultados_exames' | 'dolar' | 'chat' | 'atendimento' | 'exames' | 'cirurgia' | 'socorro' | 'check_up' | 'odonto' | 'vantagens';
@@ -36,6 +37,15 @@ export default function ShowcaseButton(props: PropsTypeDisplayButton) {
                 break;
             case 'dolar':
                 navigation.navigate('Stack', { screen: 'BeaforeShowPricesScreen' });
+                break;
+            case 'odonto':
+                navigation.navigate('Stack', { screen: 'BeaforeOdontoScreen' });
+                break;
+            case 'exames':
+                navigation.navigate('Stack', { screen: 'BeaforeExamesScreen' });
+                break;
+            case 'chat': case 'resultados_exames':
+                AlertExternalLinking();
                 break;
             default:
                 console.log('Screen not exists')

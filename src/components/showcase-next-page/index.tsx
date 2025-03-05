@@ -4,6 +4,8 @@ import HeaderLogo from '../header-logo';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
 import { PropsWithChildren } from 'react';
+import SimpleHeaderTitle from '../simple-header-title';
+import BackHeader from '../back-header';
 
 const images = {
     im: require('../../assets/calendar-card.png')
@@ -11,15 +13,19 @@ const images = {
 interface PropsType {
     image: 'im',
     title: string;
+    header: 'HeaderLogo' | 'HeaderTitle'
+    titleHeader?: string
     buttons: {icon: any, title: string, bgColor: string, action: Function}[];
 }
 function NextPage(props: PropsType){
-
-    //const navigation = useNavigation();
     
     return (
         <View style={styles.container}>
-            <HeaderLogo showBackButton/>
+            {
+                props.header === 'HeaderLogo' ? <HeaderLogo showBackButton/> :
+                props.header === 'HeaderTitle' ? <BackHeader title={props.titleHeader || ''} /> : 
+                null
+            }
             <Image 
                 source={images[props.image]}
                 style={styles.image}
@@ -30,7 +36,7 @@ function NextPage(props: PropsType){
             {props.buttons.map((bttn, index) => (
                 <TouchableOpacity onPress={() => bttn.action()} key={index} style={[styles.button, {backgroundColor: bttn.bgColor}]}>
                     <Feather name={bttn.icon} color={'white'} size={25}/>
-                    <Text style={{color: 'white', fontSize: 18}}>{bttn.title}</Text>
+                    <Text style={{color: 'white', fontSize: 18, fontWeight: 600}}>{bttn.title}</Text>
                 </TouchableOpacity>
             ))}
         </View>

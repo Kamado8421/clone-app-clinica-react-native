@@ -22,7 +22,7 @@ export default function Cirurgias(props: PropsType) {
 
     return (
         <View style={styles.container}>
-            <BackHeader title='Escolha o Check-up' />
+            <BackHeader title='Cirurgias' />
             <View style={styles.boxBttnScreens}>
                 <TouchableOpacity onPress={() => onChangeScreen('cirurgias')} style={[styles.bttnScreen, screenShow == 'cirurgias' ? bttnActionStyles : {}]}>
                     <Text style={screenShow == 'cirurgias' ? { fontWeight: 500 } : {}}>CIRURGIAS</Text>

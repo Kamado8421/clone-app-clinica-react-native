@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useState } from "react";
+import { Alert } from "react-native";
 
 export async function checkUser(setUser: Function) {
     const storedUser = await AsyncStorage.getItem("user");
@@ -29,4 +29,10 @@ export async function removeUserStorage() {
         console.log('\n\nErro ao limpar storage: ')
         console.error(error);
     }
+}
+
+
+export function AlertExternalLinking(){
+    Alert.alert('Site externo', 'Se você está lendo essa mensagem, significa que a ação que você tentou realizar, no app original, lhe redicionaria para um link externo ou para uma tela muito específica de conteúdo próprio.\n\nAção não replicada neste clone.')
+ 
 }

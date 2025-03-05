@@ -16,9 +16,9 @@ const routesProfile: ProfileLinkProps[] = [
   { label: 'Dependentes', iconName: 'users' },
   { label: 'Cartões de Crédito', iconName: 'credit-card' },
   { label: 'Carteira Clone da Clínica', iconName: 'calendar' },
-  { label: 'Dúvidas Frequentes', iconName: 'help-circle' },
-  { label: 'Termos e Condicões', iconName: 'clipboard' },
-  { label: 'Política de Privacidade', iconName: 'key' },
+  { label: 'Dúvidas Frequentes', iconName: 'help-circle', externalLink: true },
+  { label: 'Termos e Condicões', iconName: 'clipboard', externalLink: true },
+  { label: 'Política de Privacidade', iconName: 'key', externalLink: true },
   { label: 'Sair', iconName: 'power', isLogoutBttn: true },
 ]
 
@@ -60,6 +60,7 @@ export default function Profile() {
           label={link.label}
           screenName={link.screenName}
           isLogoutBttn={link.isLogoutBttn}
+          externalLink={link.externalLink}
         />)}
 
     </View>

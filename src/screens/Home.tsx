@@ -3,9 +3,10 @@ import colors from '../config/colors';
 import ShowcaseButton, { PropsTypeDisplayButton } from '../components/showcase-button';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import WhatsAppLinkingButton from '../components/whatsapp-button';
 import ChangeCytyPopUpTemplate from '../components/pop-ups-templates/change-city-pop-up';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 //import { router } from 'expo-router';
 
 const DisplayButtons: PropsTypeDisplayButton[] = [
@@ -19,35 +20,34 @@ export default function Home() {
 
 
   const navigation = useNavigation<any>();
-  const [statePopUp, setStatePopUp] = useState(true);
-  const [city, setCity] = useState('...');
+  const [statePopUp, setStatePopUp] = useState(false);
+  const [city, setCity] = useState('');
 
-  const handleCity = async (ct: string) => {
-    switch (ct.toUpperCase()) {
-      case 'MA':
-        setCity('Maranhão')
-        break;
-      case 'PI':
-        setCity('Piauí')
-        break;
+  useEffect(() => {
+    const getClinicCity = async () => {
+      try {
+        const cityFounded = await AsyncStorage.getItem('clinic_city');
+        
+        if(cityFounded){
+          setCity(cityFounded);
+          setStatePopUp(false)
+        } else {
+          setCity('...');
+          setStatePopUp(true)
+        }
+
+      } catch (error) {
+        console.log(error);
+      }
     }
 
-    setStatePopUp(false);
-  }
-
-  try {
-
-  } catch (error) {
-    console.error(error);
-  }
-
-
+    getClinicCity();
+  }, [])
 
   return (
     <View style={styles.container}>
 
       <ChangeCytyPopUpTemplate setCity={setCity} setStatePopUp={setStatePopUp} statePopUp={statePopUp} />
-
       <View style={styles.header}>
         <Image
           source={require('../assets/logo.png')}
