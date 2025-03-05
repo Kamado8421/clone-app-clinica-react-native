@@ -1,27 +1,26 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import colors from '../config/colors';
 import LoginRequired from './LoginRequired';
-import { USER_ON } from '../../App';
-import HeaderForTabs from '../components/header-for-tabs';
 import { Feather } from '@expo/vector-icons';
 import SimpleHeaderTitle from '../components/simple-header-title';
 import { useEffect, useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { checkUser } from '../services';
+import Loading from '../components/pre-loading';
+import { TIME_LOADING_DEFAULT } from '../config/infos';
 
 export default function Credits() {
 
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const checkUser = async () => {
-      const storedUser = await AsyncStorage.getItem("user");
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
-      }
-    };
-
-    checkUser();
+    checkUser(setUser);
+    setTimeout(() => setLoading(false), TIME_LOADING_DEFAULT)
   }, []);
+
+  if (loading && user) {
+    return <Loading />
+  }
 
   if (!user) return (
     <LoginRequired

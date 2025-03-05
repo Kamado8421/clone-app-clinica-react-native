@@ -1,26 +1,26 @@
 import { StyleSheet, Text, View } from 'react-native';
 import colors from '../config/colors';
-import { USER_ON } from '../../App';
 import LoginRequired from './LoginRequired';
 import SimpleHeaderTitle from '../components/simple-header-title';
 import { Feather } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { checkUser } from '../services';
+import Loading from '../components/pre-loading';
+import { TIME_LOADING_DEFAULT } from '../config/infos';
 
 export default function Cart() {
 
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const checkUser = async () => {
-      const storedUser = await AsyncStorage.getItem("user");
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
-      }
-    };
-
-    checkUser();
+    checkUser(setUser);
+    setTimeout(() => setLoading(false), TIME_LOADING_DEFAULT)
   }, []);
+
+  if (loading && user) {
+    return <Loading />
+  }
 
   if (!user) return (
     <LoginRequired
@@ -29,7 +29,7 @@ export default function Cart() {
       textMarketing='Crie ou acesse sua conta para vizualizar seus pedidos'
     />
   )
-  
+
   return (
     <View style={styles.container}>
       <SimpleHeaderTitle title='Meu Carrinho' />
@@ -44,7 +44,7 @@ export default function Cart() {
         </View>
       </View>
 
-      <Text style={{fontWeight: 'bold', fontSize: 16, alignSelf: 'center', marginTop: '70%'}}>Você ainda não solicitou nenhum serviço</Text>
+      <Text style={{ fontWeight: 'bold', fontSize: 16, alignSelf: 'center', marginTop: '70%' }}>Você ainda não solicitou nenhum serviço</Text>
     </View>
   );
 }

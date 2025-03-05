@@ -9,7 +9,6 @@ export default function LoginUser() {
 
     const navigation = useNavigation();
     
-
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={() => navigation.goBack()} style={{ marginTop: 50, marginLeft: 20 }}>

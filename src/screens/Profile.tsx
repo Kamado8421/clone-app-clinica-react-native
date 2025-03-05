@@ -1,12 +1,14 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import colors from '../config/colors';
 import LoginRequired from './LoginRequired';
-import { USER_ON } from '../../App';
 import HeaderLogo from '../components/header-logo';
 import ProfileLink, { ProfileLinkProps } from '../components/profile-link';
 import { Feather } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { checkUser } from '../services';
+import Loading from '../components/pre-loading';
+import { TIME_LOADING_DEFAULT } from '../config/infos';
 
 const routesProfile: ProfileLinkProps[] = [
   { label: 'Editar Perfil', iconName: 'edit' },
@@ -17,23 +19,22 @@ const routesProfile: ProfileLinkProps[] = [
   { label: 'Dúvidas Frequentes', iconName: 'help-circle' },
   { label: 'Termos e Condicões', iconName: 'clipboard' },
   { label: 'Política de Privacidade', iconName: 'key' },
-  { label: 'Sair', iconName: 'power' },
+  { label: 'Sair', iconName: 'power', isLogoutBttn: true },
 ]
 
 export default function Profile() {
 
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const checkUser = async () => {
-      const storedUser = await AsyncStorage.getItem("user");
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
-      }
-    };
-
-    checkUser();
+    checkUser(setUser);
+    setTimeout(() => setLoading(false), TIME_LOADING_DEFAULT)
   }, []);
+
+  if (loading && user) {
+    return <Loading />
+  }
 
   if (!user) return (
     <LoginRequired
@@ -58,22 +59,9 @@ export default function Profile() {
           iconName={link.iconName}
           label={link.label}
           screenName={link.screenName}
+          isLogoutBttn={link.isLogoutBttn}
         />)}
 
-      <TouchableOpacity onPress={async () => {
-        try {
-          await AsyncStorage.removeItem('user'); // Remove o usuário do storage
-          console.log('Usuário removido!');
-        } catch (error) {
-          console.error('Erro ao remover usuário:', error);
-        }
-      }}>
-
-        <ProfileLink
-          iconName='power'
-          label='Sair (FUNCTION)'
-        />
-      </TouchableOpacity>
     </View>
   );
 }

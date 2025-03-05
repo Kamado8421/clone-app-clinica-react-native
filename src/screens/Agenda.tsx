@@ -1,26 +1,27 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import colors from '../config/colors';
-import { USER_ON } from '../../App';
 import LoginRequired from './LoginRequired';
 import { useEffect, useState } from 'react';
 import SimpleHeaderTitle from '../components/simple-header-title';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { checkUser } from '../services';
+import Loading from '../components/pre-loading';
+import { TIME_LOADING_DEFAULT } from '../config/infos';
 
 export default function Agenda() {
-
-  const [user, setUser] = useState(null);
+  
   const [screen, setScreen] = useState('PENDENTES');
 
-  useEffect(() => {
-    const checkUser = async () => {
-      const storedUser = await AsyncStorage.getItem("user");
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
-      }
-    };
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    checkUser();
+  useEffect(() => {
+    checkUser(setUser);
+    setTimeout(() => setLoading(false), TIME_LOADING_DEFAULT)
   }, []);
+
+  if(loading && user) {
+    return <Loading />
+  }
 
   if (!user) return (
     <LoginRequired
@@ -30,7 +31,7 @@ export default function Agenda() {
     />
   )
 
-  
+
   const changeScreen = (screen: 'PENDENTES' | 'ANTERIORES') => {
     setScreen(screen);
   }
