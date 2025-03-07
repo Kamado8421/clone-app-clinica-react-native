@@ -12,6 +12,7 @@ import ExamesOdonto from '../screens/showcases-screens/ExamesOdonto';
 import ProcedimentoOdonto from '../screens/showcases-screens/ProcedimentoOdonto';
 import AgendarExames from '../screens/showcases-screens/AgendarExames';
 import BeaforeExames from '../screens/showcases-screens/beafore-screens/BeaforeExames';
+import Vantagens from '../screens/showcases-screens/Vantages';
 
 const Stack = createNativeStackNavigator();
 
@@ -76,6 +77,10 @@ export default function StackRoutes(){
             <Stack.Screen 
                 component={BeaforeExames}
                 name='BeaforeExamesScreen'
+            />
+            <Stack.Screen 
+                component={Vantagens}
+                name='VantagensScreen'
             />
        </Stack.Navigator>
     )

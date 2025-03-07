@@ -44,6 +44,9 @@ export default function ShowcaseButton(props: PropsTypeDisplayButton) {
             case 'exames':
                 navigation.navigate('Stack', { screen: 'BeaforeExamesScreen' });
                 break;
+            case 'vantagens':
+                navigation.navigate('Stack', { screen: 'VantagensScreen' });
+                break;
             case 'chat': case 'resultados_exames':
                 AlertExternalLinking();
                 break;
